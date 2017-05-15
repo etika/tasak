@@ -7,18 +7,21 @@ Report
     <th>Router Location</th> 
     <th>Router Average Strength</th> 
   </tr>
- <% @routers.each do |r|%>
+ <% @routers.in_batches do |group|%>
+   <% group.each  do |r|%>
+
   <tr>
      <td><%=r.id%></td>
     <td><%=r.name%></td>
     <td><%= r.location%></td> 
-    <td><%= r.strength.strength%></td> 
+    <td><%= r.average_strength%></td> 
 
   </tr>
+<%end%>
   <%end%>
  
 </table>
 <%= will_paginate @routers %>
 
   Download:
-  <%= link_to "CSV", csv_reports_path(format: "csv",routers: @routers) %>
+  <%= link_to "CSV", csv_reports_path(format: "csv") %>

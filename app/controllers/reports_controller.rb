@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
   
   def csv_reports
     EM.defer do
-      @routers = params[:routers]
+      @routers = Router.all
       respond_to do |format|
         format.html
         puts "benchmarking",Benchmark.measure {

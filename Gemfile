@@ -31,6 +31,7 @@ gem 'as_csv', '~> 2.0'
 gem 'devise'
 gem 'thin'
 gem 'will_paginate', '~> 3.1.0'
+gem 'bulk_insert'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
