@@ -4,18 +4,20 @@ LOCATIONS = ["Tilak Nagar", "Rajouri Garden","Tagore Garden","Ramesh Nagar", "Ut
 has_many :strengths
 
 def self.to_csv
- lookup = { id: 'Router Id', location: 'Router Location', name: 'Router Name', strength:'Avg Router Strength'}
+ lookup = { id: 'Router Id', location: 'Router Location', name: 'Router Name'}
+  # , average_strength:'Avg Router Strength'}
   CSV.generate(headers: true) do |csv|
     csv << lookup.values
-    all.each do |lead|
+    all.find_each do |lead|
       csv << lookup.keys.map { |attr| 
 
-        if attr.to_s == 'strength'
-          lead.average_strength
-         else
+        # if attr.to_s == 'strength'
+        #   lead.average_strength
+        #  else
           lead.send(attr)
-         end
+         # end
        }
+       # csv << last_value.map{ |attr| lead.average_strength}
     end
   end
 end
