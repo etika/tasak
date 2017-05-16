@@ -10,14 +10,8 @@ def self.to_csv
     Router.uncached do 
     all.find_each(batch_size:500) do |lead|
       csv << lookup.keys.map { |attr| 
-
-        # if attr.to_s == 'strength'
-        #   lead.average_strength
-        #  else
           lead.send(attr)
-         # end
        }
-       # csv << last_value.map{ |attr| lead.average_strength}
     end
   end
 end
