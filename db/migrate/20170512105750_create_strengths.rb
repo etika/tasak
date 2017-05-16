@@ -6,5 +6,7 @@ class CreateStrengths < ActiveRecord::Migration[5.0]
       t.integer :strength
       t.timestamps
     end
+    add_index :strengths, :router_id
+
   end
 end

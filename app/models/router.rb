@@ -2,13 +2,13 @@ class Router < ApplicationRecord
 TOTAL_ROUTERS = 9000
 LOCATIONS = ["Tilak Nagar", "Rajouri Garden","Tagore Garden","Ramesh Nagar", "Uttam Nagar","Tilak Nagar"]
 has_many :strengths
-
+attr_accessor :average_strength
 def self.to_csv
- lookup = { id: 'Router Id', location: 'Router Location', name: 'Router Name'}
-  # , average_strength:'Avg Router Strength'}
+ lookup = { id: 'Router Id', location: 'Router Location', name: 'Router Name', average_strength:'Avg Router Strength'}
   CSV.generate(headers: true) do |csv|
     csv << lookup.values
-    all.find_each do |lead|
+    Router.uncached do 
+    all.find_each(batch_size:500) do |lead|
       csv << lookup.keys.map { |attr| 
 
         # if attr.to_s == 'strength'
@@ -21,9 +21,9 @@ def self.to_csv
     end
   end
 end
+end
 
 def average_strength
   self.strengths.average(:strength)
 end
-
 end

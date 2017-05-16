@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20170512130501) do
     t.integer  "strength"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["router_id"], name: "index_strengths_on_router_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
