@@ -48,6 +48,7 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'rails-controller-testing'
 end
 
 group :development do
