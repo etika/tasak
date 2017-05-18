@@ -2,7 +2,6 @@ require 'benchmark'
 
 class ReportsController < ApplicationController
     before_action :authenticate_user!, except: [:home]
-
   def index
     @routers = Router.all.paginate(:page => params[:page], :per_page => 30)
   end
